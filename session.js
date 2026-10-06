@@ -15,11 +15,13 @@ function moneyAccessor(obj, key, backing) {
     set(amount) {
       const vnd = Math.round(amount * 10000);
       if (!Number.isSafeInteger(vnd)) throw new Error('Số tiền không hợp lệ');
-      this[backing] = vnd;
+      const previous=this[backing];this[backing] = vnd;
+      if(key==='cash'&&typeof queueMoneyNotice==='function'&&S?.players?.includes(this))queueMoneyNotice(this,vnd-previous);
     }
   });
 }
 function installMoneyState() {
+  if(S) S.buyoutRule="open";
   if (!S) return;
   S.players.forEach(p => moneyAccessor(p, 'cash', 'cashVnd'));
   moneyAccessor(S, 'pot', 'potVnd');
@@ -79,6 +81,7 @@ function restoreGame() {
     if(S.auction) S.auction.bids=Object.fromEntries(Object.entries(S.auction.bidsVnd||{}).map(([id,v])=>[id,v/10000]));
     installMoneyState();
     initializeRentBoosts();
+    if(S.boardChoice&&(!['event','station'].includes(S.boardChoice.type)||S.boardChoice.player!==S.turn))S.boardChoice=null;
     busy=false; moving=null; movementDepth=0; paused=true;
     continuation=data.resumeJailMove?()=>{cur().jailed=false;cur().jail=0;move(S.dice[0]+S.dice[1]);}:null;
     migrateLegacyAuction();
