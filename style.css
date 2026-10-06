@@ -105,3 +105,35 @@ body.full-play{height:100dvh;overflow:hidden;display:block}.full-play header,.fu
 @media(prefers-reduced-motion:reduce){.cash-notice{animation:none}}
 
 @media(min-width:901px){.full-play .mapviewport{padding-top:52px;padding-bottom:52px}.full-play:has(.hud-player:nth-child(5)) .mapviewport{padding-top:92px;padding-bottom:92px}.hud-player{min-height:34px;padding:4px 8px;border-radius:12px}.hud-avatar{font-size:23px}.hud-person b{font-size:12px;line-height:1.2}.hud-person small{font-size:9px;line-height:1.2}.hud-money{font-size:13px}.hud-player.top-left,.hud-player.top-right{top:calc(8px + var(--hud-offset)*.65)}.hud-player.bottom-left,.hud-player.bottom-right{bottom:calc(8px + var(--hud-offset)*.65)}}
+
+/* Compact card catalogue: keep descriptions readable with less empty space. */
+:root{--catalogue-title:16px;--catalogue-body:14px;--catalogue-gap:8px;--catalogue-padding:10px 12px}
+#modalbody .card-entry{display:block;min-height:0;padding:var(--catalogue-padding);margin:var(--catalogue-gap) 0;gap:0}
+#modalbody .card-entry .tag{display:block;font-size:12px;line-height:1.3;letter-spacing:.7px;margin:0 0 4px}
+#modalbody .card-entry h3{font-family:var(--font-body);font-size:var(--catalogue-title);font-weight:500;line-height:1.35;margin:0 0 4px}
+#modalbody .card-entry p{font-size:var(--catalogue-body);line-height:1.5;max-width:none;margin:0}
+
+/* Consistent compact scale for menus, setup, assets and notices. */
+:root{--compact-text:14px;--compact-heading:18px;--compact-display:32px;--compact-space:10px;--compact-control:36px}
+dialog[data-anchor],dialog{width:min(560px,calc(100vw - 24px));padding:14px 16px;font-size:var(--compact-text);line-height:1.5}
+dialog[data-anchor=board]{width:min(560px,var(--modal-board-width));padding:14px 16px}
+dialog[data-anchor=screen]{width:min(560px,calc(100vw - 24px));padding:14px 16px}
+dialog[data-anchor] h2,dialog h2{font-size:var(--compact-display);line-height:1.1;margin:0 44px 10px 0}
+dialog h3{font-size:var(--compact-heading);line-height:1.35;margin:12px 0 6px}
+dialog p{font-size:var(--compact-text);line-height:1.5;margin:7px 0}
+dialog label{font-size:var(--compact-text);line-height:1.4;margin:10px 0 4px}
+dialog input,dialog select{min-height:38px;padding:7px 9px;font-size:14px;line-height:1.4;border-radius:10px}
+dialog .slot,dialog .buttonrow{gap:6px}
+dialog button:not(.tile){min-height:var(--compact-control);padding:6px 10px;font-size:13px;line-height:1.35}
+dialog .close{width:36px;height:36px;padding:0;min-height:36px}
+dialog .asset{padding:9px 11px;margin:7px 0;font-size:14px}
+dialog .asset .buttonrow{margin-top:6px}
+dialog .tag{font-size:12px}dialog hr{margin:12px 0;border-top-width:1px}
+.milestone-toast{width:min(440px,calc(100vw - 24px));padding:12px 16px;border-radius:18px}
+.milestone-toast b{font-size:18px;line-height:1.35;margin-bottom:4px}.milestone-toast span{font-size:14px;line-height:1.5}
+.full-play .center #actions{padding:10px 12px;width:min(360px,calc(100% - 16px))}
+.full-play #actions .buyout-offer,.full-play #actions .goal-threat{padding:8px 10px;margin:7px 0}
+body:not(.full-play) .center{gap:14px}body:not(.full-play) .center h1{font-size:clamp(40px,5vw,72px);letter-spacing:-1px}
+body:not(.full-play) .center p{font-size:14px;line-height:1.5}body:not(.full-play) .die{width:44px;height:44px;font-size:32px;border-radius:12px}
+@media(pointer:coarse){dialog button:not(.tile),dialog input,dialog select{min-height:44px}dialog input,dialog select{font-size:16px}dialog .close{width:44px;height:44px}}
+@media(max-width:600px){dialog[data-anchor],dialog{padding:12px;max-width:calc(100vw - 16px)}dialog .slot{gap:6px}dialog h3{font-size:16px}.full-play .center #actions{padding:8px}.milestone-toast{padding:10px 12px}}
